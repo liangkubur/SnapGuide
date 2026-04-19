@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "SnapGuide",
+  "version": "1.0.0",
+  "description": "Record your web interactions and generate step-by-step tutorials automatically.",
+
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_end",
+      "all_frames": false
+    }
+  ],
+
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "SnapGuide"
+  }
+}

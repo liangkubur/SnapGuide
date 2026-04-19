@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SnapGuide</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Auth screen -->
+    <div id="screen-auth" class="screen">
+      <div class="header">
+        <span class="logo">📸</span>
+        <h1>SnapGuide</h1>
+        <p class="subtitle">Auto-generate tutorials from your interactions</p>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="login">Sign In</button>
+        <button class="tab" data-tab="register">Register</button>
+      </div>
+
+      <!-- Login form -->
+      <form id="form-login" class="form active">
+        <div class="field">
+          <label for="login-email">Email</label>
+          <input id="login-email" type="email" placeholder="you@example.com" required />
+        </div>
+        <div class="field">
+          <label for="login-pass">Password</label>
+          <input id="login-pass" type="password" placeholder="••••••••" required />
+        </div>
+        <div id="login-error" class="error hidden"></div>
+        <button type="submit" class="btn-primary w-full">Sign In</button>
+      </form>
+
+      <!-- Register form -->
+      <form id="form-register" class="form">
+        <div class="field">
+          <label for="reg-name">Name</label>
+          <input id="reg-name" type="text" placeholder="Your name" />
+        </div>
+        <div class="field">
+          <label for="reg-email">Email</label>
+          <input id="reg-email" type="email" placeholder="you@example.com" required />
+        </div>
+        <div class="field">
+          <label for="reg-pass">Password</label>
+          <input id="reg-pass" type="password" placeholder="At least 6 characters" required minlength="6" />
+        </div>
+        <div id="register-error" class="error hidden"></div>
+        <button type="submit" class="btn-primary w-full">Create Account</button>
+      </form>
+    </div>
+
+    <!-- Dashboard screen -->
+    <div id="screen-dashboard" class="screen hidden">
+      <div class="header-bar">
+        <div class="user-info">
+          <span class="logo-sm">📸</span>
+          <span id="user-name" class="user-name">User</span>
+        </div>
+        <button id="btn-logout" class="btn-ghost" title="Sign out">↩</button>
+      </div>
+
+      <!-- Idle state -->
+      <div id="state-idle">
+        <p class="section-label">New Recording</p>
+        <div class="field">
+          <label for="tutorial-title">Tutorial Title</label>
+          <input id="tutorial-title" type="text" placeholder="e.g. How to reset password" />
+        </div>
+        <div class="field">
+          <label for="tutorial-desc">Description (optional)</label>
+          <input id="tutorial-desc" type="text" placeholder="Short description…" />
+        </div>
+        <div id="start-error" class="error hidden"></div>
+        <button id="btn-start" class="btn-record w-full">
+          <span class="record-dot"></span> Start Recording
+        </button>
+        <p class="hint">Click Start, then interact with any website. SnapGuide will capture every step automatically.</p>
+      </div>
+
+      <!-- Recording state -->
+      <div id="state-recording" class="hidden">
+        <div class="recording-status">
+          <span class="rec-dot pulse"></span>
+          <span>Recording…</span>
+        </div>
+        <div id="recording-info" class="recording-info">
+          <div class="info-row"><span class="info-label">Tutorial:</span> <span id="rec-title">–</span></div>
+          <div class="info-row"><span class="info-label">Steps:</span> <span id="step-count">0</span></div>
+        </div>
+        <button id="btn-stop" class="btn-stop w-full">⏹ Stop Recording</button>
+        <p class="hint">Interact with any website. Steps are saved automatically.</p>
+      </div>
+
+      <!-- Success state -->
+      <div id="state-done" class="hidden">
+        <div class="success-box">
+          <div class="success-icon">✅</div>
+          <p class="success-title">Tutorial Saved!</p>
+          <p id="done-steps" class="success-sub">0 steps recorded</p>
+        </div>
+        <a id="btn-view" href="#" target="_blank" class="btn-primary w-full text-center block">
+          View &amp; Edit Tutorial →
+        </a>
+        <button id="btn-new" class="btn-secondary w-full mt-2">Record Another</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
