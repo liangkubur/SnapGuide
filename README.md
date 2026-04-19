@@ -1,3 +1,5 @@
+https://github.com/liangkubur/SnapGuide/blob/main/Screenshot%202026-04-16%20233520.png
+
 # SnapGuide 📸
 **Automatically generate step-by-step tutorials from your web interactions.**
 
